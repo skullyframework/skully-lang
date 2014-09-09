@@ -112,7 +112,7 @@ class SiteLanguagesHelper {
             foreach($filepaths as $filepath) {
                 $timestring = date('Y/m/d h:m:i', filemtime($filepath));
                 $timeAgoString = $timeAgo->inWords($timestring, "now");
-                $name = substr($filepath,strrpos($filepath, '/')+1);
+                $name = substr($filepath,strrpos($filepath, DIRECTORY_SEPARATOR)+1);
 
                 if (is_dir($filepath)) {
                     $dirs []= array(
