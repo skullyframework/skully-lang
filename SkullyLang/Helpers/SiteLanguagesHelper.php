@@ -239,4 +239,13 @@ class SiteLanguagesHelper {
             file_put_contents($this->getCompletePath($path), json_encode($entries));
         }
     }
+
+    public static function isHtml($string){
+        preg_match("/<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/",$string, $matches);
+        if(count($matches)==0){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
+    }
 }

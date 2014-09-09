@@ -1,7 +1,6 @@
 <?php
 namespace SkullyLang\Controllers\Traits;
 
-use App\Helpers\HtmlHelper;
 use Skully\App\Helpers\FileHelper;
 use SkullyLang\Helpers\SiteLanguagesHelper;
 
@@ -94,7 +93,7 @@ trait SiteLanguagesTrait {
         try {
             $this->assignItems($helper);
             $item = $helper->getItem($this->getParam('p'), $this->getParam('id'));
-            if (HtmlHelper::isHtml($item['value'])) {
+            if (SiteLanguagesHelper::isHtml($item['value'])) {
                 $this->app->getTemplateEngine()->assign('isHtml', true);
             }
             $this->app->getTemplateEngine()->assign('item', $item);
