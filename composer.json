@@ -23,9 +23,13 @@
     "suggest": {
         "ext-runkit": "For using the runkit API."
     },
+    "autoload": {
+        "psr-0": {
+            "SkullyLang": ""
+        }
+    },
     "autoload-dev": {
         "psr-0": {
-            "SkullyLang": "",
             "SkullyLangTestApp\\": "Tests/app"
         }
     }
