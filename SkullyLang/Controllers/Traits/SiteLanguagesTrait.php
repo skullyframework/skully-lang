@@ -140,7 +140,7 @@ trait SiteLanguagesTrait {
                 $this->app->redirect($this->editPath, array('p' => $this->getParam('p'), 'id' => $itemParams['name'], 'l' => $this->getParam('l')));
             }
             catch (\Exception $e) {
-                if (file_exists($this->getCompletePath($this->getParam('p')))) {
+                if (file_exists($helper->getCompletePath($this->getParam('p')))) {
                     $this->render($this->itemNotFoundTpl);
                 }
                 else {
@@ -172,7 +172,7 @@ trait SiteLanguagesTrait {
                 $this->setMessage("Item ".$this->getParam('id')." deleted", 'message');
             }
             catch (\Exception $e) {
-                if (file_exists($this->getCompletePath($this->getParam('p')))) {
+                if (file_exists($helper->getCompletePath($this->getParam('p')))) {
                     $this->setMessage("Item not found", 'error');
                 }
                 else {
