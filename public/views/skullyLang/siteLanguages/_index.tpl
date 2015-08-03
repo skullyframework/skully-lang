@@ -1,38 +1,40 @@
 {extends file='admin/wrappers/_main.tpl'}
 {block name='content'}
     {nocache}
-        <div class="widget">
-            <div class="head dark">
-                <div class="icon"><span class="icos-book"></span></div>
-                <h2>Site Language Manager</h2>
+        <div class="panel panel-transparent">
+            <div class="panel-heading">
+                <h2 class="text-primary bold"><i class="fa fa-bookmark m-r-15"></i>Site Language Manager</h2>
+                <div class="clearfix"></div>
             </div>
-            <div class="toolbar">
-                {include file='skullyLang/siteLanguages/_toolbar.tpl'}
-            </div>
-            <div class="block-fluid">
+
+            <div class="panel-body">
+                <div class="toolbar m-b-15">
+                    {include file='skullyLang/siteLanguages/_toolbar.tpl'}
+                </div>
+
                 {include file='admin/widgets/_alerts.tpl' }
-                <table id="table-language" cellpadding="0" cellspacing="0" width="100%" class="table-hover">
+                <table id="table-language" cellpadding="0" cellspacing="0" width="100%" class="table table-hover">
                     <thead>
-                        {if $mode == 'dir'}
-                            <tr>
-                                <th class="TAL">Name</th>
-                                <th class="TAR" style="width: 120px">Last Modified</th>
-                            </tr>
-                        {else}
-                            <tr>
-                                <th class="TAL" style="width: 200px">Name</th>
-                                <th class="TAL">Value</th>
-                            </tr>
-                        {/if}
+                    {if $mode == 'dir'}
+                        <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-right" style="width: 120px">Last Modified</th>
+                        </tr>
+                    {else}
+                        <tr>
+                            <th class="text-left" style="width: 200px">Name</th>
+                            <th class="text-left">Value</th>
+                        </tr>
+                    {/if}
                     </thead>
                     <tbody>
                     {if $mode == 'dir'}
                         {foreach $items as $item}
                             <tr>
                                 <td>
-                                    <a href="{url path=$indexPath p={$item.path} l={$params['l']}}"><i class="{if $item.type == 'dir'}icosg-folder{else}icosg-file{/if} icon-inline"></i><span>{$item.name}</span></a>
+                                    <a href="{url path=$indexPath p={$item.path} l={$params['l']}}"><i class="{if $item.type == 'dir'}fa fa-folder{else}fa fa-file{/if} icon-inline"></i><span>{$item.name}</span></a>
                                 </td>
-                                <td class="TAR">
+                                <td class="text-right">
                                     {$item.updatedAt}
                                 </td>
                             </tr>

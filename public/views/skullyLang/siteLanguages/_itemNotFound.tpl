@@ -1,24 +1,26 @@
 {extends file='admin/wrappers/_main.tpl'}
 {block name='content'}
     {nocache}
-        <div class="widget">
-            <div class="head dark">
-                <div class="icon"><span class="icos-book"></span></div>
-                <h2>Site Language Manager</h2>
+        <div class="panel panel-transparent">
+            <div class="panel-heading">
+                <h2 class="text-primary bold"><i class="fa fa-bookmark m-r-15"></i>Site Language Manager</h2>
+                <div class="clearfix"></div>
             </div>
-            <div class="toolbar">
-                {include file='skullyLang/siteLanguages/_toolbar.tpl'}
-            </div>
-            <div class="block-fluid">
+
+            <div class="panel-body">
+                <div class="toolbar m-b-15">
+                    {include file='skullyLang/siteLanguages/_toolbar.tpl'}
+                </div>
+
                 {if (!empty($message))}
-                    <div class="row-form">
-                        <div class="span12">
-                            <div class="alert alert-error">{$message}</div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-danger">{$message}</div>
                         </div>
                     </div>
                 {/if}
-                <div class="row-form">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-sm-12">
                         <h3>Item Not Found</h3>
                         <p>Create it</p>
                     </div>
