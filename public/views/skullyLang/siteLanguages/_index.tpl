@@ -18,7 +18,7 @@
                     {if $mode == 'dir'}
                         <tr>
                             <th class="text-left">Name</th>
-                            <th class="text-right" style="width: 120px">Last Modified</th>
+                            <th class="text-right" style="max-width: 200px">Last Modified</th>
                         </tr>
                     {else}
                         <tr>
@@ -32,7 +32,7 @@
                         {foreach $items as $item}
                             <tr>
                                 <td>
-                                    <a href="{url path=$indexPath p={$item.path} l={$params['l']}}"><i class="{if $item.type == 'dir'}fa fa-folder{else}fa fa-file{/if} icon-inline"></i><span>{$item.name}</span></a>
+                                    <a href="{url path=$indexPath p={$item.path} l={$params['l']}}"><i class="{if $item.type == 'dir'}fa fa-folder{else}fa fa-file{/if} icon-inline m-r-15"></i><span>{$item.name}</span></a>
                                 </td>
                                 <td class="text-right">
                                     {$item.updatedAt}
