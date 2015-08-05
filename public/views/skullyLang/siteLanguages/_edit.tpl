@@ -32,7 +32,8 @@
                         </nav>
                     </div>
 
-                    {*<div class="block-fluid">*}
+                <div class="panel panel-default">
+                    <div class="panel-body">
                         {include file='admin/widgets/_alerts.tpl' }
                         <div class="row">
                             <div class="col-sm-12">
@@ -42,42 +43,27 @@
                                 <h4>{if $_path.action == 'edit' || $_path.action == 'update'}Edit {$item.name}{else}New Item{/if}</h4>
                             </div>
                         </div>
-                        <div class="form-group required">
+                        <div class="form-group form-group-default required">
                             <label for="item_name">{if $_path.action == 'edit' || $_path.action == 'update'}{lang value="Change Name"}{else}{lang value="Name"}{/if}</label>
                             <input name="item[name]" id="item_name" type="text" class="form-control validate[required,maxSize[140]]" value="{$item.name|escape}"/>
-                            <span class="hint">{lang value="Required"}</span>
+                            {*<span class="hint">{lang value="Required"}</span>*}
                         </div>
 
-                        <div class="row-form">
+                        <div class="form-group">
                             <label>{lang value="Value"}</label>
                             <div class="radio radio-primary">
                                 <input type="radio" value="1" id="plaintext" name="item[texttype]" checked="checked">
                                 <label for="plaintext">{lang value="Plain Text"}</label>
 
-                                <input type="radio" value="1" id="richtext" name="item[texttype]" checked="checked">
+                                <input type="radio" value="1" id="richtext" name="item[texttype]">
                                 <label for="richtext">{lang value="Rich Text"}</label>
                             </div>
-                            <textarea name="item[value]" id="item_value" class="form-control" style="height: 400px;">{$item.value|escape}</textarea>
-                            {*<div class="span10">*}
-                                {*<div class="row-form">*}
-                                    {*<div class="span2">*}
-                                        {*<label for="plaintext"><input id="plaintext" type="radio" name="item[texttype]" value="1" checked />{lang value='Plain Text'}</label>*}
-                                    {*</div>*}
-                                    {*<div class="span2">*}
-                                        {*<label for="richtext"><input id="richtext" type="radio" name="item[texttype]" value="1" />{lang value='Rich Text'}</label>*}
-                                    {*</div>*}
-                                {*</div>*}
-                                {*<textarea style="height: 400px;" name="item[value]" class="">{$item.value}</textarea>*}
-                            {*</div>*}
+                            <div class="summernote-wrapper" id="itemValueWrapper">
+                                <textarea name="item[value]" id="item_value" class="form-control" style="height: 400px;">{$item.value|escape}</textarea>
+                            </div>
                         </div>
-
-                        {*<div class="toolbar bottom TAR">*}
-                            {*<div class="btn-group">*}
-                                {*<button class="btn btn-primary" id="submitForm" type="submit">Save Changes</button>*}
-                            {*</div>*}
-                        {*</div>*}
-
-                    {*</div>*}
+                    </div>
+                </div>
                 {/form}
             </div>
         </div>
@@ -95,15 +81,25 @@
         });
     </script>
     <script>
-        var ckeditor = false;
+        var editor = false;
         $(document).ready(function(){
             $('#plaintext').click(function(e) {
-                if (ckeditor) {
-                    ckeditor.destroy();
+                if (editor) {
+                    $("#item_value").val( $("#item_value").code() );
+                    $("#item_value").destroy();
                 }
             });
             $('#richtext').click(function(e) {
-                ckeditor = CKEDITOR.replace('item[value]');
+                $("#item_value").summernote({
+                    height: 200,
+                    onfocus: function(e) {
+                        $('body').addClass('overlay-disabled');
+                    },
+                    onblur: function(e) {
+                        $('body').removeClass('overlay-disabled');
+                    }
+                });
+                editor = true;
             });
             {if $isHtml}
             $('#richtext').click();
