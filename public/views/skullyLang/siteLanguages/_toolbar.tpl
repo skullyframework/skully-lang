@@ -3,7 +3,7 @@
         {foreach $siteLanguagesBreadcrumbs as $crumb}
             {if empty($crumb.path)}
                 {if $crumb.name != "/"}
-                    <li><p>{$crumb.name}</p></li>
+                    <li><p style="display: inline-block;">{$crumb.name}</p></li>
                 {/if}
             {else}
                 <li><a href="{url path={$indexPath} p={$crumb.path} l={$params['l']}}">{$crumb.name}</a></li>
